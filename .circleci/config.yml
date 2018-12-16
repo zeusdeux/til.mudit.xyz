@@ -1,0 +1,73 @@
+version: 2.1
+executors:
+  node-8-10:
+    docker:
+      - image: circleci/node:8.10
+
+jobs:
+  build:
+    executor: node-8-10
+    steps:
+      - checkout
+      - run:
+          name: 'Install dependencies'
+          command: |
+            npm install
+      - run:
+          name: 'Build'
+          environment:
+            TIL_PRELOAD_WINDOW: 3
+          command: |
+            npm run build
+      - persist_to_workspace:
+          root: /til
+          paths:
+            - lambda
+            - public
+
+  deploy:
+    executor: node-8-10
+    steps:
+      - run:
+          name: 'Install now'
+          command: |
+            npm install now --no-save
+      - attach_workspace:
+          at: /til
+      - run:
+          name: 'Deploy to zeithq using now'
+          command: |
+            npm run deploy
+
+  deploy-and-alias:
+    executor: node-8-10
+    steps:
+      - run:
+          name: 'Install now'
+          command: |
+            npm install now --no-save
+      - attach_workspace:
+          at: /til
+      - run:
+          name: 'Deploy and alias to til.mudit.xyz'
+          command: |
+            npm run deploy
+            npm run alias
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: master
+      - deploy-and-alias:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
