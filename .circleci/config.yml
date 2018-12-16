@@ -28,6 +28,7 @@ jobs:
   deploy:
     executor: node-8-10
     steps:
+      - checkout
       - run:
           name: 'Install now'
           command: |
@@ -42,6 +43,7 @@ jobs:
   deploy-and-alias:
     executor: node-8-10
     steps:
+      - checkout
       - run:
           name: 'Install now'
           command: |
