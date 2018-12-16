@@ -49,7 +49,7 @@ export default class App extends React.Component {
     // below the top.
     // More here:
     // https://stackoverflow.com/questions/11092736/window-onpopstate-event-state-null
-    history.pushState(this.state, '', this.state.currentTilId)
+    history.replaceState(this.state, '', this.state.currentTilId)
     window.addEventListener('popstate', this.popstateHandler)
   }
   componentWillUnmount() {
