@@ -100,6 +100,7 @@ export default class App extends React.Component {
           key={tilId}
           style={currentTilId === tilId ? { backgroundColor: 'yellow' } : {}}
           onClick={_ => this.makeCurrent(tilId)}
+          className="til"
         >
           <p>{heading}</p>
           <p>{learnt}</p>

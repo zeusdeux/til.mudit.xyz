@@ -86,6 +86,7 @@ function Index({ title, ...appProps }) {
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
         <link rel="preload" as="style" href="/app.css" />
         <link rel="preload" as="script" href="/app.js" />
