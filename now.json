@@ -17,5 +17,9 @@
       },
       "dest": "/lambda/server-bundle.js"
     }
-  ]
+  ],
+  "env": {
+    "SENTRY_DSN": "@sentry-dsn",
+    "NODE_ENV": "production"
+  }
 }

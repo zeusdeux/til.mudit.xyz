@@ -7,3 +7,4 @@ package*
 webpack*
 src/*
 .tern-port
+lambda/server-bundle.js.map

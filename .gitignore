@@ -89,3 +89,4 @@ public/app.js
 public/app.js.map
 lambda/*
 .tern-port
+.envrc

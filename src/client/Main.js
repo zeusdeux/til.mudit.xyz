@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { BrowserRouter } from 'react-router-dom'
+import { getTils } from '../contentful'
+;(async function run() {
+  const currentTilId = Number.parseInt(location.pathname.substr(1), 10)
+  const [total, tils] = await getTils(currentTilId)
 
-ReactDOM.hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.querySelector('main')
-)
+  ReactDOM.hydrate(
+    <App total={total} tils={tils} currentTilId={currentTilId} />,
+    document.querySelector('main')
+  )
+})()

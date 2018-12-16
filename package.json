@@ -4,7 +4,8 @@
   "description": "A collection of my TILs",
   "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack && DEV_MODE=true node lambda/server-bundle.js"
   },
   "keywords": [
     "til",
@@ -23,6 +24,7 @@
   "author": "Mudit Ameta",
   "license": "MIT",
   "dependencies": {
+    "@sentry/node": "^4.4.2",
     "body-parser": "^1.18.3",
     "contentful": "^7.0.5",
     "express": "^4.16.4",
