@@ -1,0 +1,80 @@
+{
+  "name": "til.mudit.xyz",
+  "version": "1.0.0",
+  "description": "A collection of my TILs",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "til",
+    "react",
+    "service",
+    "worker",
+    "pwa",
+    "contentful",
+    "webpack",
+    "zeit",
+    "now",
+    "zeithq",
+    "lambda",
+    "ssr"
+  ],
+  "author": "Mudit Ameta",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "contentful": "^7.0.5",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.2.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
+    "ncc": "^0.3.6",
+    "prettier": "1.15.3",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*-test.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

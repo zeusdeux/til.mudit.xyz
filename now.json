@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "til.mudit.xyz",
+  "public": false,
+  "alias": ["til.mudit.xyz"],
+  "builds": [
+    { "src": "lambda/server-bundle.js", "use": "@now/node-server" },
+    { "src": "public/*", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "/app.(?<ext>.*)", "dest": "/public/app.$ext" },
+    {
+      "src": "/.*",
+      "headers": {
+        "strict-transport-security": "max-age=31536000;",
+        "link": "</app.css>; as=style; rel=preload, </app.js>; as=script; rel=preload"
+      },
+      "dest": "/lambda/server-bundle.js"
+    }
+  ]
+}
