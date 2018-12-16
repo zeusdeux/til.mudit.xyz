@@ -12,7 +12,6 @@
     {
       "src": "/.*",
       "headers": {
-        "strict-transport-security": "max-age=31536000;",
         "link": "</app.css>; as=style; rel=preload, </app.js>; as=script; rel=preload"
       },
       "dest": "/lambda/server-bundle.js"
