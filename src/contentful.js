@@ -5,7 +5,10 @@ const contentfulClient = Contentful.createClient({
   accessToken: 'cb56064cbb388ff129210206ccffcbb5d3fe1dc71ddd527b73f5c940ef6e3a34'
 })
 
-export async function getTils(tilId, noOfExtraTils = 1) {
+export async function getTils(
+  tilId,
+  noOfExtraTils = Number.parseInt(process.env.TIL_PRELOAD_WINDOW, 10) || 1
+) {
   const { total, _limit, items: rawTils } = await contentfulClient.getEntries({
     limit: tilId + noOfExtraTils,
     content_type: 'learning',

@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const mode = 'production'
 const devtool = 'source-map'
 const jsLoader = {
@@ -38,6 +39,7 @@ module.exports = [
     devtool,
     module: {
       rules: [jsLoader]
-    }
+    },
+    plugins: [new webpack.EnvironmentPlugin(['TIL_PRELOAD_WINDOW'])]
   }
 ]

@@ -20,6 +20,7 @@
   ],
   "env": {
     "SENTRY_DSN": "@sentry-dsn",
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "TIL_PRELOAD_WINDOW": "3"
   }
 }
