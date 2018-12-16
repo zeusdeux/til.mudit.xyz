@@ -9,8 +9,17 @@ export async function getTils(
   tilId,
   noOfExtraTils = Number.parseInt(process.env.TIL_PRELOAD_WINDOW, 10) || 1
 ) {
+  const { total: totalEntriesCount } = await contentfulClient.getEntries({
+    content_type: 'learning'
+  })
+  const windowSize = tilId + noOfExtraTils
   const { total, _limit, items: rawTils } = await contentfulClient.getEntries({
-    limit: tilId + noOfExtraTils,
+    // we need the skip since the entries are sorted in reverse order or createdAt
+    // and therefore, if we are on /1, then we don't need entries 1 and 2 as they would be
+    // the 1st two latest ones but instead the first two from the end and therefore
+    // we move the offset using skip
+    skip: windowSize >= totalEntriesCount ? 0 : totalEntriesCount - windowSize,
+    limit: windowSize,
     content_type: 'learning',
     select: 'sys.createdAt,fields.heading,fields.learnt,fields.url,fields.tag',
     order: '-sys.createdAt'
