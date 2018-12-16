@@ -10,7 +10,8 @@ export async function getTils(
   noOfExtraTils = Number.parseInt(process.env.TIL_PRELOAD_WINDOW, 10) || 1
 ) {
   const { total: totalEntriesCount } = await contentfulClient.getEntries({
-    content_type: 'learning'
+    content_type: 'learning',
+    limit: 1
   })
   const windowSize = tilId + noOfExtraTils
   const { total, _limit, items: rawTils } = await contentfulClient.getEntries({
