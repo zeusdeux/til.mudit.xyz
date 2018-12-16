@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { tilsToMd } from '../mdToHtml'
 import { getTils } from '../contentful'
 
 export default class App extends React.Component {
@@ -55,7 +56,9 @@ export default class App extends React.Component {
     window.removeEventListener('popstate', this.popstateHandler)
   }
   async loadMore(_) {
-    const [total, tils] = await getTils(this.state.tils.length)
+    const [total, rawTils] = await getTils(this.state.tils.length)
+    // convert til.fields.learnt from md to html
+    const tils = await tilsToMd(rawTils)
     this.setState({
       total,
       tils
@@ -91,8 +94,8 @@ export default class App extends React.Component {
   render() {
     const { total, tils, currentTilId } = this.state
 
-    const result = tils.map(([til, tilId]) => {
-      const { heading, learnt, url } = til.fields
+    const tilNodes = tils.map(([til, tilId]) => {
+      const { heading, learntHtml, url } = til.fields
       const createdAt = new Date(til.sys.createdAt).toString()
 
       return (
@@ -102,8 +105,8 @@ export default class App extends React.Component {
           onClick={_ => this.makeCurrent(tilId)}
           className="til"
         >
-          <p>{heading}</p>
-          <p>{learnt}</p>
+          <h2>{heading}</h2>
+          <div dangerouslySetInnerHTML={{ __html: learntHtml }} />
           <p>
             Read more: <a href={url}>{url}</a>
           </p>
@@ -113,10 +116,10 @@ export default class App extends React.Component {
     })
     return (
       <>
-        {total > result.length ? (
+        {total > tilNodes.length ? (
           <button onClick={this.loadMore}>Load more</button>
         ) : null}
-        {result}
+        {tilNodes}
       </>
     )
   }

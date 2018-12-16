@@ -10,6 +10,7 @@ import bodyParser from 'body-parser'
 import logger from 'morgan'
 import * as Sentry from '@sentry/node'
 
+import { tilsToMd } from './mdToHtml'
 import { getTils } from './contentful'
 
 const app = express()
@@ -52,7 +53,9 @@ app.get('/:tilId', async (req, res, next) => {
     next()
   }
 
-  const [total, tils] = await getTils(tilId)
+  const [total, rawTils] = await getTils(tilId)
+  // convert til.fields.learnt from md to html
+  const tils = await tilsToMd(rawTils)
 
   if (tilId > total) {
     res.redirect(`/${total}`)
