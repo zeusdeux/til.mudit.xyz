@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import bodyParser from 'body-parser'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -11,7 +10,6 @@ import logger from 'morgan'
 
 const app = express()
 
-app.use(express.static(resolve('./public')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

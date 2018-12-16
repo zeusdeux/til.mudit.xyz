@@ -1,7 +1,6 @@
 const path = require('path')
-const isProd = process.env.NODE_ENV === 'production'
-const mode = isProd ? 'production' : 'development'
-const devtool = isProd ? 'source-map' : 'eval'
+const mode = 'production'
+const devtool = 'source-map'
 const jsLoader = {
   test: /\.js$/,
   exclude: /node_modules/,

@@ -86,5 +86,6 @@ typings/
 # End of https://www.gitignore.io/api/node
 
 public/app.js
+public/app.js.map
 lambda/*
 .tern-port
