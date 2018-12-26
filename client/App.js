@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { tilsToMd } from '../mdToHtml'
-import { getTils } from '../contentful'
+import { tilsToMd } from '../helpers/mdToHtml'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,7 +55,9 @@ export default class App extends React.Component {
     window.removeEventListener('popstate', this.popstateHandler)
   }
   async loadMore(_) {
-    const [total, rawTils] = await getTils(this.state.tils.length)
+    const [total, rawTils] = await fetch(
+      encodeURI(`/getTils?count=${this.state.tils.length}`)
+    ).then(res => res.json())
     // convert til.fields.learnt from md to html
     const tils = await tilsToMd(rawTils)
     this.setState({
@@ -116,9 +117,7 @@ export default class App extends React.Component {
     })
     return (
       <>
-        {total > tilNodes.length ? (
-          <button onClick={this.loadMore}>Load more</button>
-        ) : null}
+        {total > tilNodes.length ? <button onClick={this.loadMore}>Load more</button> : null}
         {tilNodes}
       </>
     )
