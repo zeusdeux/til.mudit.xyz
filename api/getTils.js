@@ -1,4 +1,3 @@
-import { basename } from 'path'
 import { parse } from 'url'
 import { createClient } from 'contentful'
 import { init } from '../helpers/sentry'
@@ -8,7 +7,7 @@ export default async function getTils(req, res) {
   const Sentry = init({
     host: req.headers.host,
     method: req.method,
-    lambda: basename(__filename),
+    lambda: parse(req.url).pathname,
     deployment: req.headers['x-now-deplyment-url']
   })
   const respondWithError = getErrorSender(res)
@@ -73,7 +72,7 @@ export default async function getTils(req, res) {
 
     res.end(JSON.stringify(result, null, 2))
   } catch (err) {
-    Sentry.captureException(err)
+    await Sentry.captureException(err)
     return respondWithError('Something went wrong', 500)
   }
 }
