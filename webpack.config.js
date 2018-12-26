@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const mode = 'production'
 const devtool = 'source-map'
 const jsLoader = {
@@ -17,8 +16,14 @@ module.exports = [
   {
     // server
     mode,
-    entry: { server: './src/server.js' },
+    entry: {
+      root: './api/root.js',
+      getTils: './api/getTils.js',
+      error: './api/error.js',
+      app: './api/app.js'
+    },
     output: {
+      libraryTarget: 'commonjs',
       path: path.resolve(__dirname, 'lambda'),
       filename: '[name]-bundle.js'
     },
@@ -31,7 +36,7 @@ module.exports = [
   {
     // client
     mode,
-    entry: { client: './src/client/Main.js' },
+    entry: { client: './client/Main.js' },
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: 'app.js'
@@ -39,7 +44,6 @@ module.exports = [
     devtool,
     module: {
       rules: [jsLoader]
-    },
-    plugins: [new webpack.EnvironmentPlugin(['TIL_PRELOAD_WINDOW'])]
+    }
   }
 ]

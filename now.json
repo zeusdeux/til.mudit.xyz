@@ -4,22 +4,45 @@
   "public": false,
   "alias": ["til.mudit.xyz"],
   "builds": [
-    { "src": "lambda/server-bundle.js", "use": "@now/node-server" },
+    { "src": "lambda/*.js", "use": "@now/node" },
     { "src": "public/*", "use": "@now/static" }
   ],
   "routes": [
-    { "src": "/app.(?<ext>.*)", "dest": "/public/app.$ext" },
+    { "src": "/app.(?<ext>.*)", "methods": ["GET"], "dest": "/public/app.$ext" },
     {
-      "src": "/.*",
+      "src": "/getTils",
+      "methods": ["GET"],
+      "dest": "/lambda/getTils-bundle.js"
+    },
+    {
+      "src": "/",
+      "methods": ["GET"],
+      "dest": "/lambda/root-bundle.js"
+    },
+    {
+      "src": "/error",
+      "methods": ["GET"],
+      "dest": "/lambda/error-bundle.js"
+    },
+    {
+      "src": "/(?<tilId>[0-9]+)",
+      "methods": ["GET"],
       "headers": {
         "link": "</app.css>; as=style; rel=preload, </app.js>; as=script; rel=preload"
       },
-      "dest": "/lambda/server-bundle.js"
+      "dest": "/lambda/app-bundle.js"
+    },
+    {
+      "src": "/.*",
+      "status": 404
     }
   ],
   "env": {
     "SENTRY_DSN": "@sentry-dsn",
     "NODE_ENV": "production",
-    "TIL_PRELOAD_WINDOW": "3"
+    "TIL_PRELOAD_WINDOW": "3",
+    "TIL_SPACE_ID": "@til-space-id",
+    "TIL_CTFL_ACCESS_TOKEN": "@til-cda-key",
+    "PRODUCTION_URL": "til.mudit.xyz"
   }
 }
