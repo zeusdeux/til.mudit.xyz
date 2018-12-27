@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
+    "build:dev": "webpack --mode development --watch",
+    "dev": "nodemon --watch lambda now-dev.js",
     "deploy": "now -t $NOW_TOKEN -m branch=$CIRCLE_BRANCH -m build=$CIRCLE_BUILD_URL -m commit=$CIRCLE_SHA1 -m pr=$CIRCLE_PULL_REQUEST",
     "alias": "now alias -t $NOW_TOKEN"
   },
@@ -43,9 +45,12 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4",
     "husky": "^1.2.1",
     "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
     "prettier": "1.15.3",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
