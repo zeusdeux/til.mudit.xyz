@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "deploy": "now -m BRANCH=$CIRCLE_BRANCH -m BUILD=$CIRCLE_BUILD_URL -m COMMIT=$CIRCLE_SHA1 -m PR=$CIRCLE_PULL_REQUEST -t $NOW_TOKEN",
+    "deploy": "now -t $NOW_TOKEN -m branch=$CIRCLE_BRANCH -m build=$CIRCLE_BUILD_URL -m commit=$CIRCLE_SHA1 -m pr=$CIRCLE_PULL_REQUEST",
     "alias": "now alias -t $NOW_TOKEN"
   },
   "keywords": [
