@@ -82,6 +82,8 @@ function Index({ title, ...appProps }) {
 Index.propTypes = {
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
-  tils: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.object)).isRequired,
+  tils: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.number]))
+  ).isRequired,
   currentTilId: PropTypes.number.isRequired
 }

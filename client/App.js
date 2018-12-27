@@ -125,7 +125,9 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-  tils: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.object)),
+  tils: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.number]))
+  ).isRequired,
   total: PropTypes.number,
   currentTilId: PropTypes.number
 }
