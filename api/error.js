@@ -2,7 +2,7 @@ import { parse } from 'url'
 import { init } from '../helpers/sentry'
 import getErrorSender from '../helpers/getErrorResponder'
 
-export default async function(req, res) {
+export default async function error(req, res) {
   const Sentry = init({
     host: req.headers.host,
     method: req.method,

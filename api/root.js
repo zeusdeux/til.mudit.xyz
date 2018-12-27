@@ -3,7 +3,7 @@ import { init } from '../helpers/sentry'
 import getErrorSender from '../helpers/getErrorResponder'
 import { get } from '../helpers/request'
 
-export default async function(req, res) {
+export default async function root(req, res) {
   const Sentry = init({
     host: req.headers.host,
     method: req.method,

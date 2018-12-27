@@ -8,7 +8,7 @@ import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import App from '../client/App'
 
-export default async function(req, res) {
+export default async function app(req, res) {
   const Sentry = init({
     host: req.headers.host,
     method: req.method,
@@ -25,11 +25,7 @@ export default async function(req, res) {
       throw new Error(`Expected tilId to be a number but received -> ${tilId}`)
     }
 
-    const [total, rawTils] = await get(
-      encodeURI(`https://${req.headers.host}/getTils?count=${tilId}`)
-    )
-    // convert til.fields.learnt from md to html
-    const tils = await tilsToMd(rawTils)
+    const [total] = await get(encodeURI(`https://${req.headers.host}/getTils?count=1&extra=0`))
 
     if (tilId > total) {
       res.writeHead(303, {
@@ -37,6 +33,10 @@ export default async function(req, res) {
       })
       res.end()
     } else {
+      const [, rawTils] = await get(encodeURI(`https://${req.headers.host}/getTils?count=${tilId}`))
+      // convert til.fields.learnt from md to html
+      const tils = await tilsToMd(rawTils)
+
       const markup = ReactDOMServer.renderToString(
         <Index
           title="TILs"
