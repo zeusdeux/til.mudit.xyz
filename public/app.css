@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -13,6 +14,8 @@ main {
   flex-direction: column;
   justify-content: center;
   padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .til {
