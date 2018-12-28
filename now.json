@@ -12,9 +12,6 @@
     {
       "src": "/getTils",
       "methods": ["GET"],
-      "headers": {
-        "cache-control": "s-maxage=86400"
-      },
       "dest": "/lambda/getTils-bundle.js"
     },
     {
@@ -31,7 +28,6 @@
       "src": "/(?<tilId>[0-9]+)",
       "methods": ["GET"],
       "headers": {
-        "cache-control": "s-maxage=86400",
         "link": "</app.css>; as=style; rel=preload, </app.js>; as=script; rel=preload"
       },
       "dest": "/lambda/app-bundle.js"
