@@ -20,9 +20,6 @@
     {
       "src": "/",
       "methods": ["GET"],
-      "headers": {
-        "cache-control": "s-maxage=86400"
-      },
       "dest": "/lambda/root-bundle.js"
     },
     {
