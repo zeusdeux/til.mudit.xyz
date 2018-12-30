@@ -8,8 +8,8 @@
     "build": "webpack",
     "build:dev": "webpack --mode development --watch",
     "dev": "nodemon --watch lambda now-dev.js",
-    "deploy": "now -t $NOW_TOKEN -m branch=$CIRCLE_BRANCH -m build=$CIRCLE_BUILD_URL -m commit=$CIRCLE_SHA1 -m pr=$CIRCLE_PULL_REQUEST",
-    "alias": "now alias -t $NOW_TOKEN"
+    "deploy": "now --token=$NOW_TOKEN -m branch=$CIRCLE_BRANCH -m build=$CIRCLE_BUILD_URL -m commit=$CIRCLE_SHA1 -m pr=$CIRCLE_PULL_REQUEST",
+    "alias": "now alias --token=$NOW_TOKEN"
   },
   "keywords": [
     "til",
