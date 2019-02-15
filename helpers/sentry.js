@@ -25,9 +25,7 @@ export function init({ host, method, lambda, deployment }) {
     // to sentry's servers
     // without this, errors never reach Sentry as the lambda
     // is killed before the buffer is emptied
-    return Sentry.getCurrentHub()
-      .getClient()
-      .close(2000)
+    return Sentry.flush(2000)
   }
 
   return Sentry
