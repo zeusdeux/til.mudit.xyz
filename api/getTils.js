@@ -34,8 +34,7 @@ export default async function getTils(req, res) {
     const contentfulClient = createClient({
       space: process.env.TIL_SPACE_ID,
       accessToken: process.env.TIL_CTFL_ACCESS_TOKEN,
-      insecure: process.env.NODE_ENV !== 'production' ? true : false,
-      environment: process.env.NODE_ENV !== 'production' ? 'dev' : 'master'
+      insecure: process.env.NODE_ENV !== 'production' ? true : false
     })
 
     // Get how many TILs we have in total as we use this to calculate
