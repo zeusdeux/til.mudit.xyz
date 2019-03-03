@@ -7,7 +7,7 @@ export default async function error(req, res) {
     host: req.headers.host,
     method: req.method,
     lambda: parse(req.url).pathname,
-    deployment: req.headers['x-now-deplyment-url']
+    deployment: req.headers['x-now-deployment-url']
   })
   const respondWithError = getErrorSender(res)
 

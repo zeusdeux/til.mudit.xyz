@@ -13,7 +13,7 @@ export default async function app(req, res) {
     host: req.headers.host,
     method: req.method,
     lambda: parse(req.url).pathname,
-    deployment: req.headers['x-now-deplyment-url'] || req.headers['x-now-deployment-url']
+    deployment: req.headers['x-now-deployment-url']
   })
   const respondWithError = getErrorSender(res)
 
