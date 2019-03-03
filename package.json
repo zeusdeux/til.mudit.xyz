@@ -28,7 +28,7 @@
   "author": "Mudit Ameta",
   "license": "MIT",
   "dependencies": {
-    "@sentry/node": "^4.6.1",
+    "@sentry/node": "^4.4.2",
     "contentful": "^7.0.5",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
