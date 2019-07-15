@@ -15,3 +15,4 @@ lambda/*.js.map
 LICENSE
 Readme*
 now-dev*
+.circleci
