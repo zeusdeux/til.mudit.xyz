@@ -13,20 +13,29 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
-  max-width: 960px;
+  padding: 2em;
+  max-width: 60em;
   margin: 0 auto;
 }
 
+p {
+  line-height: 1.6em;
+  font-family: serif;
+}
+
+h2 {
+  font-family: sans-serif;
+}
+
 .til {
-  padding: 20px;
+  padding: 2em;
   overflow-wrap: break-word;
 }
 
 .github-link {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 2em;
+  right: 2em;
   font-family: monospace;
 }
 
