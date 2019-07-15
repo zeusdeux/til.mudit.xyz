@@ -14,6 +14,7 @@ export default class App extends React.Component {
     this.popstateHandler = this.popstateHandler.bind(this)
     this.loadMore = this.loadMore.bind(this)
     this.makeCurrent = this.makeCurrent.bind(this)
+    this.tilRef = React.createRef()
   }
   popstateHandler(e) {
     // e.state can obviously be null if pressing the
@@ -51,6 +52,9 @@ export default class App extends React.Component {
     // https://stackoverflow.com/questions/11092736/window-onpopstate-event-state-null
     history.replaceState(this.state, '', this.state.currentTilId)
     window.addEventListener('popstate', this.popstateHandler)
+    window.requestAnimationFrame(() => {
+      this.tilRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
   }
   componentWillUnmount() {
     window.removeEventListener('popstate', this.popstateHandler)
@@ -100,13 +104,20 @@ export default class App extends React.Component {
       const { heading, learntHtml, url, tags = [] } = til.fields
       const createdAt = new Date(til.sys.createdAt).toString()
       const isCurrTil = currentTilId === tilId
+      const extraPropsForCurrentTil = isCurrTil
+        ? {
+            style: { backgroundColor: 'yellow' },
+            ref: this.tilRef
+          }
+        : {}
 
       return (
-        <div
+        <section
           key={tilId}
-          style={isCurrTil ? { backgroundColor: 'yellow' } : {}}
           onClick={_ => this.makeCurrent(tilId)}
           className="til"
+          id={`til-${tilId}`}
+          {...extraPropsForCurrentTil}
         >
           {isCurrTil ? (
             <Helmet>
@@ -117,10 +128,13 @@ export default class App extends React.Component {
           <Tags tags={tags} />
           <div dangerouslySetInnerHTML={{ __html: learntHtml }} />
           <p>
-            Read more: <a href={url}>{url}</a>
+            Read more:{' '}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {url}
+            </a>
           </p>
           <p>Created at: {createdAt}</p>
-        </div>
+        </section>
       )
     })
     return (
