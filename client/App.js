@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { tilsToMd } from '../helpers/mdToHtml'
+import { Helmet } from 'react-helmet'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -98,14 +99,20 @@ export default class App extends React.Component {
     const tilNodes = tils.map(([til, tilId]) => {
       const { heading, learntHtml, url } = til.fields
       const createdAt = new Date(til.sys.createdAt).toString()
+      const isCurrTil = currentTilId === tilId
 
       return (
         <div
           key={tilId}
-          style={currentTilId === tilId ? { backgroundColor: 'yellow' } : {}}
+          style={isCurrTil ? { backgroundColor: 'yellow' } : {}}
           onClick={_ => this.makeCurrent(tilId)}
           className="til"
         >
+          {isCurrTil ? (
+            <Helmet>
+              <title>{`Mudit's TILs — ${heading}`}</title>
+            </Helmet>
+          ) : null}
           <h2>{heading}</h2>
           <div dangerouslySetInnerHTML={{ __html: learntHtml }} />
           <p>
