@@ -64,7 +64,7 @@ function Index({ title, ...appProps }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Mudit" />
-        <meta name="description" content="Today Mudit Learned" />
+        <meta name="description" content="Mudit's TILs" />
         <meta
           name="keywords"
           content="programming, javascript, web development, today I learned, TIL, lambda, serverless"
