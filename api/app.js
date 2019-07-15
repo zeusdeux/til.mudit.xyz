@@ -39,7 +39,7 @@ export default async function app(req, res) {
 
       const markup = ReactDOMServer.renderToString(
         <Index
-          title="TILs"
+          title="Mudit's TILs"
           total={total}
           tils={tils}
           currentTilId={tilId > total ? total : tilId}
@@ -63,6 +63,13 @@ function Index({ title, ...appProps }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Mudit" />
+        <meta name="description" content="Today Mudit Learned" />
+        <meta
+          name="keywords"
+          content="programming, javascript, web development, today I learned, TIL, lambda, serverless"
+        />
+
         <title>{title}</title>
         <link rel="preload" as="style" href="/app.css" />
         <link rel="preload" as="script" href="/app.js" />
@@ -71,6 +78,14 @@ function Index({ title, ...appProps }) {
         <script defer src="/app.js" />
       </head>
       <body>
+        <a
+          className="github-link"
+          href="https://github.com/zeusdeux/til.mudit.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub
+        </a>
         <main>
           <App {...appProps} />
         </main>

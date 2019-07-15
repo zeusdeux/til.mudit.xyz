@@ -22,3 +22,10 @@ main {
   padding: 20px;
   overflow-wrap: break-word;
 }
+
+.github-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: monospace;
+}
