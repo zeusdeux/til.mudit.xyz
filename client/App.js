@@ -97,7 +97,7 @@ export default class App extends React.Component {
     const { total, tils, currentTilId } = this.state
 
     const tilNodes = tils.map(([til, tilId]) => {
-      const { heading, learntHtml, url } = til.fields
+      const { heading, learntHtml, url, tags = [] } = til.fields
       const createdAt = new Date(til.sys.createdAt).toString()
       const isCurrTil = currentTilId === tilId
 
@@ -114,6 +114,7 @@ export default class App extends React.Component {
             </Helmet>
           ) : null}
           <h2>{heading}</h2>
+          <Tags tags={tags} />
           <div dangerouslySetInnerHTML={{ __html: learntHtml }} />
           <p>
             Read more: <a href={url}>{url}</a>
@@ -129,6 +130,22 @@ export default class App extends React.Component {
       </>
     )
   }
+}
+
+function Tags({ tags }) {
+  return (
+    <div>
+      {tags.map(tag => (
+        <span key={tag} className="tag">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+Tags.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 App.propTypes = {

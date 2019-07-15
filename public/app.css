@@ -29,3 +29,14 @@ main {
   right: 20px;
   font-family: monospace;
 }
+
+.tag {
+  margin: -0.8em 0.3em 0.8em 0;
+  display: inline-block;
+  color: #9e9e9e;
+  font-family: monospace;
+}
+
+.tag:not(:last-child):after {
+  content: ',';
+}

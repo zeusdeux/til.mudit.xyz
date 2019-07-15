@@ -57,7 +57,7 @@ export default async function getTils(req, res) {
       skip: windowSize >= totalEntriesCount ? 0 : totalEntriesCount - windowSize,
       limit: windowSize,
       content_type: 'learning',
-      select: 'sys.createdAt,fields.heading,fields.learnt,fields.url,fields.tag',
+      select: 'sys.createdAt,fields.heading,fields.learnt,fields.url,fields.tags',
       order: '-sys.createdAt'
     })
 
