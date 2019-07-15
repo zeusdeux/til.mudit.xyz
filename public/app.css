@@ -27,16 +27,22 @@ h2 {
   font-family: sans-serif;
 }
 
+button {
+  width: 100%;
+  height: 2.5em;
+  margin: 0 auto;
+}
+
 .til {
   padding: 2em;
   overflow-wrap: break-word;
 }
 
 .github-link {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
   font-family: monospace;
+  margin: 1em auto 0;
+  display: block;
+  width: 110px;
 }
 
 .tag {
@@ -48,4 +54,12 @@ h2 {
 
 .tag:not(:last-child):after {
   content: ',';
+}
+
+@media screen and (min-width: 1240px) {
+  .github-link {
+    position: fixed;
+    bottom: 2.5em;
+    right: 3.4em;
+  }
 }
