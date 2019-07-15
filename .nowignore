@@ -11,6 +11,7 @@ node_modules
 .tern*
 lambda/*.js.map
 .envrc
+.env
 LICENSE
 Readme*
 now-dev*
