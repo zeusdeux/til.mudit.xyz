@@ -25,6 +25,14 @@ p {
   font-family: serif;
 }
 
+a {
+  color: #0303c5;
+}
+
+a:visited {
+  color: #5a019c;
+}
+
 .heading {
   font-family: sans-serif;
   border-bottom: 4px solid currentColor;
