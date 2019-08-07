@@ -7,6 +7,8 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+  background-color: #c8cde5;
+  color: #0c2231;
 }
 
 main {
@@ -19,41 +21,46 @@ main {
 }
 
 p {
-  line-height: 1.6em;
+  line-height: 1.7rem;
   font-family: serif;
 }
 
-h2 {
+.heading {
   font-family: sans-serif;
+  border-bottom: 4px solid currentColor;
+  line-height: 3rem;
+  margin-bottom: 0.7rem;
 }
 
 button {
-  width: 100%;
-  height: 2.5em;
+  height: 2.5rem;
+  width: 10rem;
   margin: 0 auto;
+  border: 1px solid #d6e9f5;
+  cursor: pointer;
+  margin-bottom: 2em;
 }
 
 .til {
-  padding: 2em;
+  padding: 0.75rem 1.5rem;
   overflow-wrap: break-word;
+}
+
+.til-content {
+  margin-top: 1.5rem;
 }
 
 .github-link {
   font-family: monospace;
-  margin: 1em auto 0;
+  margin: 1rem auto 0;
   display: block;
   width: 110px;
 }
 
 .tag {
-  margin: -0.8em 0.3em 0.8em 0;
+  margin-right: 0.3rem;
   display: inline-block;
-  color: #9e9e9e;
   font-family: monospace;
-}
-
-.tag:not(:last-child):after {
-  content: ',';
 }
 
 @media screen and (min-width: 1240px) {

@@ -106,7 +106,7 @@ export default class App extends React.Component {
       const isCurrTil = currentTilId === tilId
       const extraPropsForCurrentTil = isCurrTil
         ? {
-            style: { backgroundColor: 'yellow' },
+            style: { backgroundColor: '#A5AED5' },
             ref: this.tilRef
           }
         : {}
@@ -124,9 +124,9 @@ export default class App extends React.Component {
               <title>{`Mudit's TILs — ${heading}`}</title>
             </Helmet>
           ) : null}
-          <h2>{heading}</h2>
+          <h2 className="heading">{heading}</h2>
           <Tags tags={tags} />
-          <div dangerouslySetInnerHTML={{ __html: learntHtml }} />
+          <div className="til-content" dangerouslySetInnerHTML={{ __html: learntHtml }} />
           <p>
             Read more:{' '}
             <a href={url} target="_blank" rel="noopener noreferrer">
@@ -148,13 +148,14 @@ export default class App extends React.Component {
 
 function Tags({ tags }) {
   return (
-    <div>
-      {tags.map(tag => (
-        <span key={tag} className="tag">
+    <>
+      {tags.map((tag, idx) => (
+        <i key={tag} className="tag">
           {tag}
-        </span>
+          {idx === tags.length - 1 ? '' : ','}
+        </i>
       ))}
-    </div>
+    </>
   )
 }
 
