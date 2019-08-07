@@ -9,7 +9,8 @@ export default class App extends React.Component {
     this.state = {
       tils: props.tils,
       total: props.total,
-      currentTilId: props.currentTilId
+      currentTilId: props.currentTilId,
+      loading: false
     }
     this.popstateHandler = this.popstateHandler.bind(this)
     this.loadMore = this.loadMore.bind(this)
@@ -60,6 +61,9 @@ export default class App extends React.Component {
     window.removeEventListener('popstate', this.popstateHandler)
   }
   async loadMore(_) {
+    this.setState({
+      loading: true
+    })
     const [total, rawTils] = await fetch(
       encodeURI(`/getTils?count=${this.state.tils.length}`)
     ).then(res => res.json())
@@ -67,7 +71,8 @@ export default class App extends React.Component {
     const tils = await tilsToMd(rawTils)
     this.setState({
       total,
-      tils
+      tils,
+      loading: false
     })
   }
   makeCurrent(tilId) {
@@ -98,7 +103,7 @@ export default class App extends React.Component {
     )
   }
   render() {
-    const { total, tils, currentTilId } = this.state
+    const { total, tils, currentTilId, loading } = this.state
 
     const tilNodes = tils.map(([til, tilId]) => {
       const { heading, learntHtml, url, tags = [] } = til.fields
@@ -139,7 +144,9 @@ export default class App extends React.Component {
     })
     return (
       <>
-        {total > tilNodes.length ? <button onClick={this.loadMore}>Load more</button> : null}
+        {total > tilNodes.length ? (
+          <button onClick={this.loadMore}>{loading ? 'Loading...' : 'Load more'}</button>
+        ) : null}
         {tilNodes}
       </>
     )
