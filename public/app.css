@@ -58,6 +58,10 @@ button {
   margin-top: 1.5rem;
 }
 
+.til-content pre {
+  white-space: pre-wrap;
+}
+
 .github-link {
   font-family: monospace;
   margin: 1rem auto 0;
