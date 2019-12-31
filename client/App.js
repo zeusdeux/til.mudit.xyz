@@ -54,7 +54,7 @@ export default class App extends React.Component {
     history.replaceState(this.state, '', this.state.currentTilId)
     window.addEventListener('popstate', this.popstateHandler)
     window.requestAnimationFrame(() => {
-      this.tilRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      this.tilRef.current.scrollIntoView({ behavior: 'smooth' })
     })
   }
   componentWillUnmount() {

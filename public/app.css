@@ -62,23 +62,34 @@ button {
   white-space: pre-wrap;
 }
 
-.github-link {
-  font-family: monospace;
-  margin: 1rem auto 0;
-  display: block;
-  width: 110px;
-}
-
 .tag {
   margin-right: 0.3rem;
   display: inline-block;
   font-family: monospace;
 }
 
+nav {
+  font-family: monospace;
+  margin: 1rem auto 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 400px;
+}
+
 @media screen and (min-width: 1240px) {
-  .github-link {
+  nav {
     position: fixed;
     bottom: 2.5em;
     right: 3.4em;
+    width: 110px;
+  }
+  nav > a {
+    min-width: 110px;
+  }
+
+  nav > a:not(:first-of-type) {
+    margin-top: 1em;
   }
 }

@@ -78,19 +78,24 @@ function Index({ title, ...appProps }) {
         <script defer src="/app.js" />
       </head>
       <body>
-        <a
-          className="github-link"
-          href="https://github.com/zeusdeux/til.mudit.xyz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub
-        </a>
+        <nav>
+          <A href="https://mudit.xyz">Homepage</A>
+          <A href="https://blog.mudit.xyz">Blog</A>
+          <A href="https://github.com/zeusdeux/til.mudit.xyz">View on GitHub</A>
+        </nav>
         <main>
           <App {...appProps} />
         </main>
       </body>
     </html>
+  )
+}
+
+function A(props) {
+  return (
+    <a target="_blank" rel="noopener noreferrer" {...props}>
+      {props.children}
+    </a>
   )
 }
 
