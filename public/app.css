@@ -7,7 +7,7 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  background-color: #c8cde5;
+  background-color: #efeeee;
   color: #0c2231;
 }
 
@@ -50,8 +50,19 @@ button {
 }
 
 .til {
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   overflow-wrap: break-word;
+  margin: 2rem;
+  overflow-wrap: break-word;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #ffffff, #d7d6d6);
+  box-shadow: 30px 30px 60px #cbcaca, -30px -30px 60px #ffffff;
+}
+
+.til.selected {
+  border-radius: 50px;
+  background: linear-gradient(145deg, #d7d6d6, #ffffff);
+  box-shadow: 30px 30px 60px #cbcaca, -30px -30px 60px #ffffff;
 }
 
 .til-content {
