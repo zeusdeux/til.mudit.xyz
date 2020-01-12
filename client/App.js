@@ -55,10 +55,16 @@ export default class App extends React.Component {
     window.addEventListener('popstate', this.popstateHandler)
     window.requestAnimationFrame(() => {
       const { tils, currentTilId } = this.state
+
       if (tils.length !== currentTilId) {
         this.tilRef.current.scrollIntoView({ behavior: 'smooth' })
       }
     })
+    // disable auto scroll restoration as we do it
+    // as a part of scrollIntoView and without out,
+    // when the iframe for codesandbox is loaded
+    // it reset the scroll to where the user was
+    history.scrollRestoration = 'manual'
   }
   componentWillUnmount() {
     window.removeEventListener('popstate', this.popstateHandler)
