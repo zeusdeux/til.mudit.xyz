@@ -9,6 +9,7 @@
   ],
   "routes": [
     { "src": "/app.(?<ext>.*)", "methods": ["GET"], "dest": "/public/app.$ext" },
+    { "src": "/favicon.ico", "methods": ["GET"], "dest": "/public/favicon.ico" },
     {
       "src": "/getTils",
       "methods": ["GET"],

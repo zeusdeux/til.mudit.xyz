@@ -35,14 +35,16 @@ export default async function app(req, res) {
     } else {
       const [, tils] = await get(encodeURI(`https://${req.headers.host}/getTils?count=${tilId}`))
 
-      const markup = ReactDOMServer.renderToString(
-        <Index
-          title="Mudit's TILs"
-          total={total}
-          tils={tils}
-          currentTilId={tilId > total ? total : tilId}
-        />
-      )
+      const markup =
+        '<!doctype html>\n' +
+        ReactDOMServer.renderToString(
+          <Index
+            title="Mudit's TILs"
+            total={total}
+            tils={tils}
+            currentTilId={tilId > total ? total : tilId}
+          />
+        )
       res.writeHead(200, {
         'content-type': 'text/html',
         'content-length': Buffer.byteLength(markup, 'utf8')
@@ -68,7 +70,10 @@ function Index({ title, ...appProps }) {
           content="programming, javascript, web development, today I learned, TIL, lambda, serverless"
         />
 
+        <link href="/favicon.ico" rel="icon" type="image/ico" />
+
         <title>{title}</title>
+
         <link rel="preload" as="style" href="/app.css" />
         <link rel="preload" as="script" href="/app.js" />
 
