@@ -6,12 +6,8 @@ module.exports = {
     es6: true
   },
   parser: 'babel-eslint',
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'prettier/react'
-  ],
+  plugins: ['prettier'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier/react', 'prettier'],
   rules: {
     'no-unused-vars': [
       'error',
