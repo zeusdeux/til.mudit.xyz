@@ -2,7 +2,6 @@
 .git*
 .now*
 .prettier*
-package*
 webpack*
 api/*
 client/*
