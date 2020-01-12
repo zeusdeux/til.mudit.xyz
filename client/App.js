@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { tilsToMd } from '../helpers/mdToHtml'
 import { Helmet } from 'react-helmet'
-import { Transition } from 'react-spring/renderprops'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -109,56 +108,43 @@ export default class App extends React.Component {
   render() {
     const { total, tils, currentTilId, loading } = this.state
 
-    const tilNodes = (
-      <Transition
-        items={tils}
-        keys={([_, tilId]) => tilId}
-        from={{ transform: 'scale(0.94)', opacity: 0 }}
-        enter={{ transform: 'scale(1)', opacity: 1 }}
-        leave={{ transform: 'scale(0)', opacity: 0 }}
-        trail={100}
-        config={{ duration: 100 }}
-      >
-        {([til, tilId]) => style => {
-          const { heading, learntHtml, url, tags = [] } = til.fields
-          const createdAt = new Date(til.sys.createdAt).toString()
-          const isCurrTil = currentTilId === tilId
-          const extraPropsForCurrentTil = isCurrTil
-            ? {
-                /* style: { backgroundColor: '#A5AED5' }, */
-                ref: this.tilRef
-              }
-            : {}
+    const tilNodes = tils.map(([til, tilId]) => {
+      const { heading, learntHtml, url, tags = [] } = til.fields
+      const createdAt = new Date(til.sys.createdAt).toString()
+      const isCurrTil = currentTilId === tilId
+      const extraPropsForCurrentTil = isCurrTil
+        ? {
+            ref: this.tilRef
+          }
+        : {}
 
-          return (
-            <section
-              style={style}
-              key={tilId}
-              onClick={_ => this.makeCurrent(tilId)}
-              className={`til ${isCurrTil ? 'selected' : ''}`}
-              id={`til-${tilId}`}
-              {...extraPropsForCurrentTil}
-            >
-              {isCurrTil ? (
-                <Helmet>
-                  <title>{`Mudit's TILs — ${heading}`}</title>
-                </Helmet>
-              ) : null}
-              <h2 className="heading">{heading}</h2>
-              <Tags tags={tags} />
-              <div className="til-content" dangerouslySetInnerHTML={{ __html: learntHtml }} />
-              <p>
-                Read more:{' '}
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  {url}
-                </a>
-              </p>
-              <p>Created at: {createdAt}</p>
-            </section>
-          )
-        }}
-      </Transition>
-    )
+      return (
+        <section
+          key={tilId}
+          onClick={_ => this.makeCurrent(tilId)}
+          className={`til ${isCurrTil ? 'selected' : ''}`}
+          id={`til-${tilId}`}
+          {...extraPropsForCurrentTil}
+        >
+          {isCurrTil ? (
+            <Helmet>
+              <title>{`Mudit's TILs — ${heading}`}</title>
+            </Helmet>
+          ) : null}
+          <h2 className="heading">{heading}</h2>
+          <Tags tags={tags} />
+          <div className="til-content" dangerouslySetInnerHTML={{ __html: learntHtml }} />
+          <p>
+            Read more:{' '}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {url}
+            </a>
+          </p>
+          <p>Created at: {createdAt}</p>
+        </section>
+      )
+    })
+
     // const tilNodes = tils.map()
     return (
       <>
