@@ -57,7 +57,7 @@
     "webpack-cli": "^3.1.2"
   },
   "engines": {
-    "node": ">=8.10.x <13"
+    "node": "12.x"
   },
   "jest": {
     "roots": [
