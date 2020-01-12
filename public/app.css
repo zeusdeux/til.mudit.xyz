@@ -15,8 +15,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2em;
-  max-width: 60em;
+  padding: 2rem;
+  max-width: 70rem;
   margin: 0 auto;
 }
 
@@ -25,12 +25,14 @@ p {
   font-family: serif;
 }
 
-a {
-  color: #0303c5;
+a,
+a:visited {
+  color: #a00;
 }
 
-a:visited {
-  color: #5a019c;
+a:hover,
+a:focus {
+  color: #ce7844;
 }
 
 .heading {
@@ -46,17 +48,16 @@ button {
   margin: 0 auto;
   border: 1px solid #d6e9f5;
   cursor: pointer;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 .til {
   padding: 1rem 2rem;
   overflow-wrap: break-word;
-  margin: 2rem;
-  overflow-wrap: break-word;
+  margin: 2rem 0;
   border-radius: 50px;
   background: linear-gradient(145deg, #ffffff, #d7d6d6);
-  box-shadow: 30px 30px 60px #cbcaca, -30px -30px 60px #ffffff;
+  box-shadow: 10px 10px 36px -1px #cbcaca, -10px -10px 36px -1px #ffffff;
 }
 
 .til.selected {
@@ -92,8 +93,8 @@ nav {
 @media screen and (min-width: 1240px) {
   nav {
     position: fixed;
-    bottom: 2.5em;
-    right: 3.4em;
+    bottom: 2.5rem;
+    right: 3.4rem;
     width: 110px;
   }
   nav > a {
@@ -101,6 +102,6 @@ nav {
   }
 
   nav > a:not(:first-of-type) {
-    margin-top: 1em;
+    margin-top: 1rem;
   }
 }
