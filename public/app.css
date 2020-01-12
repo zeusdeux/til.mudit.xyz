@@ -74,6 +74,10 @@ button {
   white-space: pre-wrap;
 }
 
+.til-content img {
+  width: 100%;
+}
+
 .tag {
   margin-right: 0.3rem;
   display: inline-block;
