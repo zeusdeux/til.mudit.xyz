@@ -4,5 +4,5 @@ import A from './A.component'
 import LazyImg from './LazyImg.component'
 
 export default function WrappedMarkdown(props) {
-  return <Markdown {...props} renderers={{ link: A, image: LazyImg }} />
+  return <Markdown {...props} escapeHtml={false} renderers={{ link: A, image: LazyImg }} />
 }
