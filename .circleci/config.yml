@@ -1,12 +1,12 @@
 version: 2.1
 executors:
-  node-10-15:
+  nodejs:
     docker:
-      - image: circleci/node:10.15
+      - image: circleci/node:erbium
 
 jobs:
   build:
-    executor: node-10-15
+    executor: nodejs
     steps:
       - checkout
       - run:
@@ -26,7 +26,7 @@ jobs:
             - public
 
   deploy:
-    executor: node-10-15
+    executor: nodejs
     steps:
       - checkout
       - run:
@@ -41,7 +41,7 @@ jobs:
             npm run deploy -- --target staging
 
   deploy-and-alias:
-    executor: node-10-15
+    executor: nodejs
     steps:
       - checkout
       - run:
