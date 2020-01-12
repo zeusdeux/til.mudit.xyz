@@ -2,11 +2,11 @@ import { parse } from 'url'
 import { init } from '../helpers/sentry'
 import getErrorSender from '../helpers/getErrorResponder'
 import { get } from '../helpers/request'
-import { tilsToMd } from '../helpers/mdToHtml'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import App from '../client/App'
+import A from '../helpers/A.component'
 
 export default async function app(req, res) {
   const Sentry = init({
@@ -33,9 +33,7 @@ export default async function app(req, res) {
       })
       res.end()
     } else {
-      const [, rawTils] = await get(encodeURI(`https://${req.headers.host}/getTils?count=${tilId}`))
-      // convert til.fields.learnt from md to html
-      const tils = await tilsToMd(rawTils)
+      const [, tils] = await get(encodeURI(`https://${req.headers.host}/getTils?count=${tilId}`))
 
       const markup = ReactDOMServer.renderToString(
         <Index
@@ -88,14 +86,6 @@ function Index({ title, ...appProps }) {
         </main>
       </body>
     </html>
-  )
-}
-
-function A(props) {
-  return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
-      {props.children}
-    </a>
   )
 }
 

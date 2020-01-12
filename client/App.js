@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { tilsToMd } from '../helpers/mdToHtml'
 import { Helmet } from 'react-helmet'
+import Markdown from '../helpers/Markdown'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -67,11 +67,10 @@ export default class App extends React.Component {
     this.setState({
       loading: true
     })
-    const [total, rawTils] = await fetch(
-      encodeURI(`/getTils?count=${this.state.tils.length}`)
-    ).then(res => res.json())
+    const [total, tils] = await fetch(encodeURI(`/getTils?count=${this.state.tils.length}`)).then(
+      res => res.json()
+    )
     // convert til.fields.learnt from md to html
-    const tils = await tilsToMd(rawTils)
     this.setState({
       total,
       tils,
@@ -109,7 +108,7 @@ export default class App extends React.Component {
     const { total, tils, currentTilId, loading } = this.state
 
     const tilNodes = tils.map(([til, tilId]) => {
-      const { heading, learntHtml, url, tags = [] } = til.fields
+      const { heading, learnt, url, tags = [] } = til.fields
       const createdAt = new Date(til.sys.createdAt).toString()
       const isCurrTil = currentTilId === tilId
       const extraPropsForCurrentTil = isCurrTil
@@ -133,7 +132,7 @@ export default class App extends React.Component {
           ) : null}
           <h2 className="heading">{heading}</h2>
           <Tags tags={tags} />
-          <div className="til-content" dangerouslySetInnerHTML={{ __html: learntHtml }} />
+          <Markdown className="til-content" source={learnt} />
           <p>
             Read more:{' '}
             <a href={url} target="_blank" rel="noopener noreferrer">
