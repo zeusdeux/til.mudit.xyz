@@ -9,6 +9,8 @@ body {
   overflow-x: hidden;
   background-color: #efeeee;
   color: #0c2231;
+  font-family: sans-serif;
+  font-weight: 100;
 }
 
 main {
@@ -20,9 +22,12 @@ main {
   margin: 0 auto;
 }
 
+code {
+  font-size: 0.875rem;
+}
+
 p {
   line-height: 1.7rem;
-  font-family: serif;
 }
 
 a,
@@ -36,8 +41,8 @@ a:focus {
 }
 
 .heading {
-  font-family: sans-serif;
-  border-bottom: 4px solid currentColor;
+  font-weight: 100;
+  border-bottom: 2px solid currentColor;
   line-height: 3rem;
   margin-bottom: 0.7rem;
 }
@@ -56,14 +61,20 @@ button {
   overflow-wrap: break-word;
   margin: 2rem 0;
   border-radius: 50px;
+  background: linear-gradient(145deg, #d7d6d6, #ffffff);
+  box-shadow: 30px 30px 60px #cbcaca, -30px -30px 60px #ffffff;
+  transition: all 120ms cubic-bezier(0.1, 0.35, 1, 1);
+}
+
+.til.selected,
+.til:hover {
+  border-radius: 50px;
   background: linear-gradient(145deg, #ffffff, #d7d6d6);
   box-shadow: 10px 10px 36px -1px #cbcaca, -10px -10px 36px -1px #ffffff;
 }
 
-.til.selected {
-  border-radius: 50px;
-  background: linear-gradient(145deg, #d7d6d6, #ffffff);
-  box-shadow: 30px 30px 60px #cbcaca, -30px -30px 60px #ffffff;
+.til:hover {
+  cursor: pointer;
 }
 
 .til-content {
@@ -82,6 +93,9 @@ button {
   margin-right: 0.3rem;
   display: inline-block;
   font-family: monospace;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: 5px;
 }
 
 nav {
