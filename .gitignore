@@ -90,3 +90,5 @@ public/app.js.map
 lambda/*
 .tern-port
 .envrc
+
+.now
