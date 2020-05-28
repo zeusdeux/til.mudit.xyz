@@ -22,6 +22,10 @@ main {
   margin: 0 auto;
 }
 
+main > h1 {
+  align-self: center;
+}
+
 code {
   font-size: 0.875rem;
 }

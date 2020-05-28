@@ -153,6 +153,7 @@ export default class App extends React.Component {
     // const tilNodes = tils.map()
     return (
       <>
+        <h1>Today I Learned</h1>
         {total > tilNodes.length ? (
           <button onClick={this.loadMore}>{loading ? 'Loading...' : 'Load more'}</button>
         ) : null}
