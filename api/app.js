@@ -89,6 +89,18 @@ function Index({ title, ...appProps }) {
         <main>
           <App {...appProps} />
         </main>
+        {/* Global site tag (gtag.js) - Google Analytics --> */}
+        <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-59474035-3" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+          gtag('config', 'UA-59474035-3');`
+          }}
+        />
       </body>
     </html>
   )
