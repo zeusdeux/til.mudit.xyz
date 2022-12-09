@@ -45,7 +45,7 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "husky": "^1.2.1",
     "jest": "^24.8.0",
     "lint-staged": "^8.1.0",
